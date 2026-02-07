@@ -1,6 +1,51 @@
 # Changelog
 
-## 2026-02-07 - Major Update: Production Testing & Best Practices
+## 2026-02-07 - v1.2.0: Search Results & Privacy Updates
+
+### 🆕 New Features
+- **Search Results History**: Added `results/` folder to save journey queries
+  - Results automatically saved with timestamps
+  - Format: `YYYY-MM-DD_HHMM_origin-destination.txt`
+  - Private and gitignored - search history never committed
+- **Save Journey Script**: New `save-journey.sh` helper script
+  - Manual journey result saving
+  - Formatted output with emojis and details
+  - Usage examples in README
+
+### 🔒 Privacy & Security Enhancements
+- **Enhanced .gitignore**:
+  - Added `results/` folder (search history)
+  - Added `.claude/` directory (contains permissions with tokens)
+  - Added `TEST_REPORT.md` (development only)
+- **Documentation Updates**:
+  - Changed examples from specific routes (Lyon-Saint-Étienne) to generic (Paris-Marseille)
+  - Changed dates from current (2026-02-08) to generic (2025-01-01)
+  - Removed personally identifiable travel plans from public documentation
+
+### 📝 Documentation
+- **Updated README.md**:
+  - New "Search Results History" section
+  - Instructions for viewing saved searches
+  - Save script usage examples
+  - All examples now use generic Paris-Marseille routes
+- **Updated .gitignore**:
+  - Explicitly added `.claude/` (previously relied on default ignore)
+  - Added `results/` for search history
+  - Added `TEST_REPORT.md` for development
+
+### 🛠️ Files Added
+- `save-journey.sh` - Journey result saving script
+- `results/README.md` - Results folder documentation
+
+### ✅ Verification
+- Confirmed no API tokens in committed files
+- Confirmed `.env` properly gitignored
+- Confirmed `.claude/` properly gitignored
+- Confirmed `results/` properly gitignored
+
+---
+
+## 2026-02-07 - v1.1.0: Major Update: Production Testing & Best Practices
 
 ### Updated Based on Real-World Testing
 Skill was tested with actual journey planning (Lyon to Saint-Étienne) and updated based on learnings.

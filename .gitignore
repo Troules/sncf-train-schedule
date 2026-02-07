@@ -7,6 +7,12 @@
 # API tokens
 *.token
 
+# Search results (saved queries)
+results/
+
+# Test reports (development only)
+TEST_REPORT.md
+
 # OS files
 .DS_Store
 Thumbs.db

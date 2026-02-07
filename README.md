@@ -45,7 +45,7 @@ This skill enables Claude to help users:
 Invoke the skill by asking Claude about French train schedules:
 
 - "What are the next trains from Paris Gare de Lyon?"
-- "Plan a journey from Paris to Lyon tomorrow at 3pm"
+- "Plan a journey from Paris to Marseille tomorrow at 3pm"
 - "Show me arrivals at Marseille Saint-Charles station"
 - "When is the next train to Bordeaux?"
 
@@ -65,6 +65,49 @@ Invoke the skill by asking Claude about French train schedules:
 - ✅ Delay and disruption information
 - ✅ Platform and track information
 - ✅ Multiple coverage regions across France
+- ✅ **Saved search results** - Journey queries automatically saved for later reference
+
+## Search Results History
+
+All journey searches are automatically saved to the `results/` folder with timestamps. This allows you to:
+- Review past searches and journey options
+- Compare routes taken on different dates
+- Keep a personal travel history
+- Reference previous journey plans
+
+**Location**: `results/YYYY-MM-DD_HHMM_origin-destination.txt`
+
+**Example**: `results/2025-01-01_1430_Paris-Marseille.txt`
+
+**Privacy**: The `results/` folder is gitignored - your search history stays private and won't be committed to version control.
+
+### Viewing Saved Results
+
+List your saved searches:
+```bash
+ls -lh results/
+```
+
+View a specific search:
+```bash
+cat results/2025-01-01_1430_Paris-Marseille.txt
+```
+
+### Using the Save Script
+
+You can manually save journey results using the included script:
+```bash
+source .env  # Load your API token
+./save-journey.sh <from_station_id> <to_station_id> <datetime> [output_file]
+
+# Example:
+./save-journey.sh stop_area:SNCF:87686006 stop_area:SNCF:87751008 20250101T143000
+```
+
+Or ask Claude to save results:
+```
+"Plan a journey from Paris to Marseille on January 1st at 2:30pm and save the results"
+```
 
 ## Examples
 
@@ -76,7 +119,7 @@ Claude: [Uses skill to fetch and display departures with times, destinations, pl
 
 ### Plan a Journey
 ```
-User: "I need to get from Paris to Lyon tomorrow at 2pm"
+User: "I need to get from Paris to Marseille tomorrow at 2pm"
 Claude: [Uses skill to find journey options with times, transfers, and durations]
 ```
 
