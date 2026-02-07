@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Claude settings (contains permissions and may have tokens)
+.claude/
+
+# API tokens
+*.token
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/
