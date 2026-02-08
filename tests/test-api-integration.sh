@@ -49,12 +49,12 @@ echo ""
 # Test 1: Coverage endpoint
 echo "Test 1: Coverage regions..."
 COVERAGE=$(curl -s -H "Authorization: $NAVITIA_API_TOKEN" "https://api.navitia.io/v1/coverage" 2>&1)
-check "Coverage endpoint returns regions" echo "$COVERAGE" | grep -q "regions"
+check "Coverage endpoint returns regions" bash -c "echo '$COVERAGE' | grep -q 'regions'"
 
 # Test 2: Places search
 echo "Test 2: Places search..."
 STATION=$(curl -s -H "Authorization: $NAVITIA_API_TOKEN" "https://api.navitia.io/v1/coverage/sncf/places?q=paris%20gare%20de%20lyon" 2>&1)
-check "Places search returns results" echo "$STATION" | grep -q "places"
+check "Places search returns results" bash -c "echo '$STATION' | grep -q 'places'"
 
 STATION_ID=$(echo "$STATION" | grep -o '"id":"stop_area:SNCF:[^"]*"' | head -1 | sed 's/"id":"\([^"]*\)"/\1/')
 
@@ -64,7 +64,7 @@ if [ -n "$STATION_ID" ]; then
     DATETIME=$(date -u +"%Y%m%dT%H%M%S")
     DEPARTURES=$(curl -s -H "Authorization: $NAVITIA_API_TOKEN" \
         "https://api.navitia.io/v1/coverage/sncf/stop_areas/$STATION_ID/departures?from_datetime=$DATETIME&count=3" 2>&1)
-    check "Departures endpoint returns data" echo "$DEPARTURES" | grep -q "departures"
+    check "Departures endpoint returns data" bash -c "echo '$DEPARTURES' | grep -q 'departures'"
 else
     echo -e "${YELLOW}SKIP${NC} Test 3: No station ID found"
 fi
@@ -72,7 +72,7 @@ fi
 # Test 4: Rate limit headers
 echo "Test 4: Rate limits..."
 HEADERS=$(curl -s -I -H "Authorization: $NAVITIA_API_TOKEN" "https://api.navitia.io/v1/coverage" 2>&1)
-check "API returns HTTP headers" echo "$HEADERS" | grep -qi "HTTP"
+check "API returns HTTP headers" bash -c "echo '$HEADERS' | grep -qi 'HTTP'"
 
 echo ""
 echo "=================================="
