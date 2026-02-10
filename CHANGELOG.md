@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-02-10 - v2.2.1: Skill Restructure and Mandatory Template Enforcement
+
+### Bug Fixes
+- **Enforce response template**: Added prominent `⚠️ MANDATORY` section in `SKILL.md` so the agent always reads and uses `references/response-template.md` before presenting train results
+- **Fix test paths**: Updated `tests/test-plugin-structure.sh` paths after skill move
+
+### Refactoring
+- **Move skill to root**: Moved `SKILL.md`, `examples/`, `references/`, `scripts/` from `skills/sncf-train-schedule/` to the project root — git history preserved
+
+### Files Modified
+- `SKILL.md` *(moved from `skills/sncf-train-schedule/SKILL.md`)*
+- `examples/`, `references/`, `scripts/` *(moved from `skills/sncf-train-schedule/`)*
+- `tests/test-plugin-structure.sh`
+
+---
+
 ## 2026-02-10 - v2.2.0: Mobile Response Template and CI Fixes
 
 ### New Features
