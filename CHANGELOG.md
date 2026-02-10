@@ -1,5 +1,58 @@
 # Changelog
 
+## 2026-02-10 - v2.1.0: Python Utilities and Documentation Enhancements
+
+### New Features
+- **Python Utility Scripts**: Added 6 comprehensive Python utilities for common tasks
+  - `search_stations.py` - Interactive station search with fuzzy matching
+  - `validate_station_id.py` - Station ID validation and details lookup
+  - `validate_datetime.py` - Journey date/time validation helper
+  - `plan_journey.py` - Full journey planning with formatted output
+  - `get_departures.py` - Real-time departures from a station
+  - `get_arrivals.py` - Real-time arrivals at a station
+- **Common Stations Reference**: Added `references/common-stations.md` with 50+ pre-populated French station IDs
+- **Scripts Documentation**: Created comprehensive `scripts/README.md` with usage examples and workflows
+
+### Enhanced Documentation
+- **SKILL.md Improvements** (~150 lines added):
+  - Added practical workflows and decision trees
+  - Created comprehensive dependency checklist
+  - Enhanced error handling patterns
+  - Added Python script integration examples
+- **Better Organization**: Structured references and utilities for easier discovery
+
+### Bug Fixes
+- **Frontmatter Formatting**: Fixed skill description to use single-line format for better readability
+
+### Files Added
+- `skills/sncf-train-schedule/scripts/search_stations.py`
+- `skills/sncf-train-schedule/scripts/validate_station_id.py`
+- `skills/sncf-train-schedule/scripts/validate_datetime.py`
+- `skills/sncf-train-schedule/scripts/plan_journey.py`
+- `skills/sncf-train-schedule/scripts/get_departures.py`
+- `skills/sncf-train-schedule/scripts/get_arrivals.py`
+- `skills/sncf-train-schedule/references/common-stations.md`
+- `skills/sncf-train-schedule/scripts/README.md`
+
+---
+
+## 2026-02-09 - v2.0.1: Documentation and CI Fixes
+
+### Bug Fixes
+- **API Token URL**: Corrected registration URL to official SNCF developer portal
+  - Updated from `navitia.io` to `https://numerique.sncf.com/startup/api/token-developpeur/`
+  - Fixed in: `.env.example`, `README.md`, `SKILL.md`, `test-api.sh`
+
+### CI/CD Improvements
+- **GitHub Actions Workflow**: Fixed workflow configuration issues
+  - Corrected `if` condition syntax in workflow YAML
+  - Removed redundant conditionals from API tests job
+  - Made hook scripts executable
+- **Test Script**: Fixed pipe handling with `set -e` in test script
+- **API Integration Testing**: Tested integration with GitHub secrets
+
+---
+
 ## 2026-02-08 - v2.0.0: Plugin Migration
 
 ### Breaking Changes
