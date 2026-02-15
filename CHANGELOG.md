@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-02-15 - v2.4.0: Marketplace Structure Fix
+
+### Bug Fixes
+- **Fixed circular marketplace reference**: `marketplace.json` previously pointed to the same GitHub repo it lived in, causing plugin installation to fail. Source is now a local path (`./sncf-train-schedule`), which is the correct structure for a single-repo marketplace.
+
+### Refactoring
+- **Plugin subdirectory**: Moved `skills/`, `hooks/`, and `.claude-plugin/plugin.json` into `sncf-train-schedule/` subdirectory to match the proper marketplace layout expected by Claude Desktop
+- **Updated tests**: Test paths now use `$PLUGIN_DIR` variable pointing to the plugin subdirectory
+
+### Breaking Changes
+- Plugin files have moved — existing installations should be reinstalled via `/plugin install sncf-train-schedule`
+
+### Files Modified
+- `.claude-plugin/marketplace.json` — source changed to `"./sncf-train-schedule"`
+- `sncf-train-schedule/` — new plugin subdirectory (previously at repo root)
+- `tests/test-plugin-structure.sh` — updated paths
+
+---
+
 ## 2026-02-10 - v2.3.0: Marketplace Distribution
 
 ### New Features
