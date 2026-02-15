@@ -1,26 +1,43 @@
-# SNCF Train Schedule — Claude Code Plugin
+# Troules Marketplace — Claude Code Plugins
 
-A Claude Code plugin for checking French train schedules, departures, arrivals, and planning journeys using the SNCF/Navitia API.
+A marketplace of Claude Code plugins by [Troules](https://github.com/Troules).
+
+## Available Plugins
+
+| Plugin | Description |
+|--------|-------------|
+| [sncf-train-schedule](#sncf-train-schedule) | Check French train schedules, departures, arrivals, and plan journeys using the SNCF/Navitia API |
+
+---
 
 ## Installation
 
-### Via Marketplace (recommended)
+### Add the marketplace
 
 ```bash
-/plugin marketplace add Troules/sncf-train-schedule
+/plugin marketplace add Troules/troules-marketplace
+```
+
+### Install a plugin
+
+```bash
 /plugin install sncf-train-schedule
 ```
 
-### Manual Install
+### Manual install
 
 ```bash
-git clone https://github.com/Troules/sncf-train-schedule
-claude --plugin-dir ./sncf-train-schedule
+git clone https://github.com/Troules/troules-marketplace
+claude --plugin-dir ./troules-marketplace/sncf-train-schedule
 ```
 
-Or add to your Claude Code settings to load automatically.
+---
 
-## Prerequisites
+## sncf-train-schedule
+
+A Claude Code plugin for checking French train schedules, departures, arrivals, and planning journeys using the SNCF/Navitia API.
+
+### Prerequisites
 
 1. **API Token**: Register at https://numerique.sncf.com/startup/api/token-developpeur/ for a free token
 2. Set the token as an environment variable:
@@ -32,7 +49,7 @@ Or add to your Claude Code settings to load automatically.
    echo 'NAVITIA_API_TOKEN=your-token-here' > .env
    ```
 
-## Quick Start
+### Quick Start
 
 Once installed, ask Claude about French trains:
 
@@ -41,7 +58,7 @@ Once installed, ask Claude about French trains:
 - "Show me arrivals at Lyon Part-Dieu"
 - "When is the next train to Bordeaux?"
 
-## Features
+### Features
 
 - Real-time departures and arrivals
 - Journey planning with transfers and CO2 emissions
@@ -50,7 +67,13 @@ Once installed, ask Claude about French trains:
 - Platform and track details
 - Saved search results (private, gitignored `results/` folder)
 
-## Plugin Structure
+### Configuration
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NAVITIA_API_TOKEN` | Navitia API token | Yes |
+
+### Plugin Structure
 
 ```
 sncf-train-schedule/
@@ -70,37 +93,9 @@ sncf-train-schedule/
 │   ├── hooks.json               # Hook manifest
 │   ├── check-token.sh           # Token validation (SessionStart)
 │   └── validate-bash-security.sh # Security check (PreToolUse)
-├── tests/
-│   ├── test-plugin-structure.sh # Structure validation
-│   └── test-api-integration.sh  # API integration tests
-├── .env.example
-├── .gitignore
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-└── LICENSE
 ```
 
-## Configuration
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NAVITIA_API_TOKEN` | Navitia API token | Yes |
-
-The plugin reads the token from the `NAVITIA_API_TOKEN` environment variable or a `.env` file.
-
-## Search Results History
-
-Journey searches are saved to `results/` with timestamps:
-- **Format**: `results/YYYY-MM-DD_HHMM_origin-destination.txt`
-- **Privacy**: The folder is gitignored — search history stays private
-
-```bash
-ls results/                    # List saved searches
-cat results/2026-02-08_*.txt   # View specific results
-```
-
-## Testing
+### Testing
 
 ```bash
 # Structure tests (no token needed)
@@ -111,6 +106,13 @@ export NAVITIA_API_TOKEN="your-token"
 bash tests/test-api-integration.sh
 ```
 
+---
+
+## Resources
+
+- [Navitia API Documentation](https://doc.navitia.io/)
+- [SNCF Open Data](https://numerique.sncf.com/ressources/api/)
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
@@ -118,15 +120,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
-## Resources
-
-- [Navitia API Documentation](https://doc.navitia.io/)
-- [SNCF Open Data](https://numerique.sncf.com/ressources/api/)
-
-## Support
-
-For issues or questions:
-- Get API token: https://numerique.sncf.com/startup/api/token-developpeur/
-- API documentation: https://doc.navitia.io/
-- Plugin issues: Open an issue in this repository
