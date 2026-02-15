@@ -46,9 +46,9 @@ else
 fi
 
 # SKILL.md
-check "SKILL.md exists" test -f "$PLUGIN_DIR/skills/sncf-train-schedule/SKILL.md"
-check "SKILL.md has YAML frontmatter" bash -c "head -1 '$PLUGIN_DIR/skills/sncf-train-schedule/SKILL.md' | grep -q '^---'"
-check "SKILL.md under 2000 words" bash -c "[ \$(wc -w < '$PLUGIN_DIR/skills/sncf-train-schedule/SKILL.md') -lt 2000 ]"
+check "SKILL.md exists" test -f "$PLUGIN_DIR/skills/plan-journey/SKILL.md"
+check "SKILL.md has YAML frontmatter" bash -c "head -1 '$PLUGIN_DIR/skills/plan-journey/SKILL.md' | grep -q '^---'"
+check "SKILL.md under 2000 words" bash -c "[ \$(wc -w < '$PLUGIN_DIR/skills/plan-journey/SKILL.md') -lt 2000 ]"
 
 # hooks.json
 check "hooks.json exists" test -f "$PLUGIN_DIR/hooks/hooks.json"
@@ -61,9 +61,9 @@ check "validate-bash-security.sh exists" test -f "$PLUGIN_DIR/hooks/validate-bas
 check "validate-bash-security.sh is executable" test -x "$PLUGIN_DIR/hooks/validate-bash-security.sh"
 
 # Reference files
-check "api-reference.md exists" test -f "$PLUGIN_DIR/skills/sncf-train-schedule/references/api-reference.md"
-check "usage-examples.md exists" test -f "$PLUGIN_DIR/skills/sncf-train-schedule/examples/usage-examples.md"
-check "save-journey.sh exists" test -f "$PLUGIN_DIR/skills/sncf-train-schedule/scripts/save-journey.sh"
+check "api-reference.md exists" test -f "$PLUGIN_DIR/skills/plan-journey/references/api-reference.md"
+check "usage-examples.md exists" test -f "$PLUGIN_DIR/skills/plan-journey/examples/usage-examples.md"
+check "save-journey.sh exists" test -f "$PLUGIN_DIR/skills/plan-journey/scripts/save-journey.sh"
 
 # .env gitignored
 check ".env is gitignored" bash -c "grep -q '^\.env$' '$ROOT/.gitignore'"

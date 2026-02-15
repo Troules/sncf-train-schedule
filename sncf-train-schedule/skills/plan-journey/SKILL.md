@@ -1,5 +1,5 @@
 ---
-name: sncf-train-schedule
+name: plan-journey
 description: Checks French train schedules, departures, arrivals, and plans journeys using the SNCF/Navitia API. Trigger when users ask about French trains, SNCF schedules, journey planning, next departures or arrivals, or real-time train information.
 ---
 
