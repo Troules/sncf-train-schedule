@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-02-16 - v2.5.2: Fix python3 command in skill docs
+
+### Bug Fixes
+- **`python3` command**: Replace bare `python` with `python3` across all skill command examples (SKILL.md, scripts/README.md, references/common-stations.md) — fixes `python: command not found` on systems without a `python` → `python3` symlink (e.g. WSL2, modern Linux)
+
+### Files Modified
+- `sncf-train-schedule/skills/plan-journey/SKILL.md`
+- `sncf-train-schedule/skills/plan-journey/scripts/README.md`
+- `sncf-train-schedule/skills/plan-journey/references/common-stations.md`
+
+---
+
 ## 2026-02-16 - v2.5.1: Housekeeping
 
 ### Chores
