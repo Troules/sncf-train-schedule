@@ -10,8 +10,8 @@ Detailed API documentation, examples, and troubleshooting for the SNCF Train Sch
 - **Paris Montparnasse**: `stop_area:SNCF:87391003`
 
 ### Lyon Stations
-- **Lyon Part-Dieu**: `stop_area:SNCF:87723197`
-- **Lyon Perrache**: `stop_area:SNCF:87722025`
+- **Lyon Part-Dieu**: `stop_area:SNCF:87722025`
+- **Lyon Perrache**: `stop_area:SNCF:87723197`
 - **Lyon Vaise**: `stop_area:SNCF:87721001`
 
 ### Other Major Cities

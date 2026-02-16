@@ -41,7 +41,7 @@ def get_arrivals(station_id, api_token, count=10, from_datetime=None, data_fresh
     Returns:
         List of arrival dictionaries
     """
-    url = f"https://api.sncf.com/v1/coverage/sncf/stop_areas/{station_id}/arrivals"
+    url = f"https://api.navitia.io/v1/coverage/sncf/stop_areas/{station_id}/arrivals"
     params = {
         "count": count,
         "data_freshness": data_freshness

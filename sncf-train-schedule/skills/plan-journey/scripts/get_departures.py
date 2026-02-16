@@ -41,7 +41,7 @@ def get_departures(station_id, api_token, count=10, from_datetime=None, data_fre
     Returns:
         List of departure dictionaries
     """
-    url = f"https://api.sncf.com/v1/coverage/sncf/stop_areas/{station_id}/departures"
+    url = f"https://api.navitia.io/v1/coverage/sncf/stop_areas/{station_id}/departures"
     params = {
         "count": count,
         "data_freshness": data_freshness
