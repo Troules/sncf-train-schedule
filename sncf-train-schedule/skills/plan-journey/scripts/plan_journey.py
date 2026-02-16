@@ -27,6 +27,25 @@ except ImportError:
     pass  # python-dotenv not installed, rely on environment variables
 
 
+def _load_plugin_settings():
+    """Load token from .claude/sncf-train-schedule.local.md if NAVITIA_API_TOKEN not set."""
+    if os.getenv("NAVITIA_API_TOKEN"):
+        return
+    settings_file = os.path.join(os.getcwd(), ".claude", "sncf-train-schedule.local.md")
+    if not os.path.isfile(settings_file):
+        return
+    with open(settings_file) as f:
+        for line in f:
+            if line.startswith("navitia_api_token:"):
+                token = line.split(":", 1)[1].strip().strip("'\"")
+                if token:
+                    os.environ["NAVITIA_API_TOKEN"] = token
+                return
+
+
+_load_plugin_settings()
+
+
 def plan_journey(from_location, to_location, api_token, datetime_param=None,
                  datetime_represents="departure", count=5, data_freshness="realtime"):
     """

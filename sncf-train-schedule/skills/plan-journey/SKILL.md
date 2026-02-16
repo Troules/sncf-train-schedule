@@ -42,7 +42,11 @@ pip install requests python-dotenv
 
 - **Base URL**: `https://api.navitia.io/v1/`
 - **Auth**: Header-based — `curl -H "Authorization: $NAVITIA_API_TOKEN" "URL"`
-- **Token**: Read from env `NAVITIA_API_TOKEN` or `.env` file. Register at https://numerique.sncf.com/startup/api/token-developpeur/
+- **Token**: Resolved in priority order:
+  1. `NAVITIA_API_TOKEN` environment variable
+  2. `.claude/sncf-train-schedule.local.md` frontmatter field `navitia_api_token` — **persists across plugin updates, gitignored** (create with `/setup`)
+  3. `.env` file in the project root
+  - Register at https://numerique.sncf.com/startup/api/token-developpeur/
 - **Default Region**: `sncf` (covers all SNCF trains across France)
 
 ## Core Endpoints
@@ -92,10 +96,13 @@ Task Progress:
 ```bash
 # Check if token is set
 echo $NAVITIA_API_TOKEN
-
-# If not set, get token at https://numerique.sncf.com/startup/api/token-developpeur/
-export NAVITIA_API_TOKEN='your-token'
 ```
+If not set, use the setup command for persistent storage (survives plugin updates):
+```
+/setup your-token-here
+```
+Or for session-only use: `export NAVITIA_API_TOKEN='your-token'`
+Get a free token at: https://numerique.sncf.com/startup/api/token-developpeur/
 
 **Step 2: Search for station**
 ```bash
@@ -188,7 +195,7 @@ When users request train information:
 
 1. **Read the response template**: Open `references/response-template.md` first. You will need it in step 7.
 
-2. **Get API token**: Check `NAVITIA_API_TOKEN` env var or source `.env`. If missing, direct users to https://numerique.sncf.com/startup/api/token-developpeur/ for a free token.
+2. **Get API token**: Check `NAVITIA_API_TOKEN` env var. If missing, check `.claude/sncf-train-schedule.local.md` (auto-loaded by all scripts). If neither exists, direct users to run `/setup your-token` — this saves the token to `.claude/sncf-train-schedule.local.md`, which persists across plugin updates and is gitignored. Get a free token at https://numerique.sncf.com/startup/api/token-developpeur/
 
 3. **Identify region**: Default to `sncf` for SNCF trains.
 
