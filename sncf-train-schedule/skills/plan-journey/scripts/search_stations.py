@@ -38,7 +38,7 @@ def search_stations(query, api_token, count=10):
     Returns:
         List of station dictionaries with id, name, and coordinates
     """
-    url = "https://api.sncf.com/v1/coverage/sncf/places"
+    url = "https://api.navitia.io/v1/coverage/sncf/places"
     params = {
         "q": query,
         "type[]": "stop_area",

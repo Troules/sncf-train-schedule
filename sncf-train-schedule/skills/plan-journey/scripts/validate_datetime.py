@@ -88,20 +88,25 @@ Example: 20260210T140000 = February 10, 2026 at 14:00:00
     parser.add_argument("datetime", help="Datetime string to validate")
     parser.add_argument("--convert", action="store_true",
                        help="Attempt to convert from common datetime formats")
+    parser.add_argument("--quiet", action="store_true",
+                       help="Print only the converted datetime string (for scripting)")
 
     args = parser.parse_args()
 
     is_valid, formatted, message = validate_datetime(args.datetime, args.convert)
 
     if is_valid:
-        print(f"✅ Valid datetime: {formatted}")
-        if message:
-            print(f"   {message}")
+        if args.quiet:
+            print(formatted)
+        else:
+            print(f"✅ Valid datetime: {formatted}")
+            if message:
+                print(f"   {message}")
 
-        # Parse and show human-readable version
-        dt = datetime.strptime(formatted, "%Y%m%dT%H%M%S")
-        readable = dt.strftime("%A, %B %d, %Y at %H:%M:%S")
-        print(f"   {readable}")
+            # Parse and show human-readable version
+            dt = datetime.strptime(formatted, "%Y%m%dT%H%M%S")
+            readable = dt.strftime("%A, %B %d, %Y at %H:%M:%S")
+            print(f"   {readable}")
 
         sys.exit(0)
     else:

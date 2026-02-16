@@ -44,7 +44,7 @@ def plan_journey(from_location, to_location, api_token, datetime_param=None,
     Returns:
         List of journey dictionaries
     """
-    url = "https://api.sncf.com/v1/coverage/sncf/journeys"
+    url = "https://api.navitia.io/v1/coverage/sncf/journeys"
     params = {
         "from": from_location,
         "to": to_location,

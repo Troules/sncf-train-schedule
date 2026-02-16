@@ -20,7 +20,7 @@ Use the `plan-journey` skill to fulfill this request. Follow the skill workflow 
    - "arrivals at X" → get arrivals
    - "arrivals at X at <datetime>" → get arrivals from the given time
    - No arguments → ask the user what they need
-   - If a datetime is provided, convert it with `python3 scripts/validate_datetime.py "<datetime>" --convert` before passing to the script
+   - If a datetime is provided, convert it with `python3 scripts/validate_datetime.py "<datetime>" --convert --quiet` and use the printed value directly
 
 2. **Follow the `plan-journey` skill** step by step (search stations, validate IDs, fetch data, format results).
 

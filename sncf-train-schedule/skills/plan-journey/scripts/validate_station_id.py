@@ -46,7 +46,7 @@ def validate_station_id(station_id, api_token):
         return False
 
     # Try to fetch station details
-    url = f"https://api.sncf.com/v1/coverage/sncf/stop_areas/{station_id}"
+    url = f"https://api.navitia.io/v1/coverage/sncf/stop_areas/{station_id}"
     headers = {"Authorization": api_token}
 
     try:
