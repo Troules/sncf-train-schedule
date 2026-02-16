@@ -20,11 +20,8 @@ except ImportError:
     print("Install with: pip install requests", file=sys.stderr)
     sys.exit(1)
 
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass  # python-dotenv not installed, rely on environment variables
+from config import load_token
+load_token()
 
 
 def get_arrivals(station_id, api_token, count=10, from_datetime=None, data_freshness="realtime"):
