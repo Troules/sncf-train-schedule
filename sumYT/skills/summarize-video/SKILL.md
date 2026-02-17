@@ -12,24 +12,29 @@ with timestamped chapters, tables, and key takeaways. Save the result and enter 
 
 ### Step 1: Fetch video metadata
 
-Call `mcp__plugin_sumYT_youtube-transcript__get_video_info` with the URL.
-
-Extract:
-- Video title
-- Channel name
-- Duration (convert to H:MM:SS format)
+Use `WebFetch` on the YouTube URL to extract metadata from the page HTML:
+- Video title (from `<title>` or `og:title`)
+- Channel name (from `og:site_name` or the channel link)
+- Duration (from `og:video:duration` or visible on the page)
 - Video ID (see Video ID Extraction below) — needed for all timestamp links
 
-### Step 2: Fetch full timed transcript
+If duration is not available from the page, leave it as `N/A` in the document header.
 
-Call `mcp__plugin_sumYT_youtube-transcript__get_timed_transcript` with the URL.
+### Step 2: Fetch timed transcript
 
-Handle pagination:
-- If the response contains `next_cursor`, call again passing `next_cursor` to get the next page
-- Repeat until no `next_cursor` is returned
-- Concatenate all pages into one full timed transcript
+Call `mcp__plugin_sumYT_youtube-transcript__get_transcript` with:
+- `url`: the YouTube URL
+- `include_timestamps`: `true`
+
+The tool returns the full transcript with inline timestamps in `[M:SS]` format, e.g.:
+```
+[0:05] Welcome to this video about machine learning.
+[0:32] Today we'll cover three main topics.
+```
 
 Detect language from the transcript text (French, English, Spanish, etc.) — the summary will be written in this language.
+
+To convert a `[M:SS]` timestamp to seconds for YouTube links: `seconds = minutes * 60 + seconds`.
 
 ### Step 3: Segment into chapters
 
@@ -37,7 +42,7 @@ Divide the timed transcript into 3-10 chapters based on topic shifts:
 - Look for transition phrases ("now let's talk about", "moving on", "next", "in this section", etc.)
 - Look for topic or subject changes in the content
 - Prefer natural boundaries over arbitrary time splits
-- Each chapter needs: a start timestamp in seconds, and a descriptive title
+- Each chapter needs: a start timestamp from the `[M:SS]` markers, converted to seconds for links
 
 For videos under 10 minutes: 3-5 chapters is appropriate.
 For videos over 1 hour: up to 10 chapters.
@@ -96,9 +101,14 @@ Use the extracted ID for all timestamp links: `https://youtu.be/<VIDEO_ID>?t=<se
 The exact tool names depend on how Claude Code normalizes the plugin and server names.
 If tool calls fail, run `/mcp` in Claude Code to see the actual registered names.
 
-Expected names (verify with `/mcp` after installation):
-- `mcp__plugin_sumYT_youtube-transcript__get_video_info`
-- `mcp__plugin_sumYT_youtube-transcript__get_timed_transcript`
+Expected name (verify with `/mcp` after installation):
+- `mcp__plugin_sumYT_youtube-transcript__get_transcript`
+
+Tool parameters:
+- `url` (required): the full YouTube URL
+- `include_timestamps` (set to `true`): includes `[M:SS]` markers in the output
+- `lang` (optional, default `en`): language code — auto-falls back if unavailable
+- `strip_ads` (optional, default `true`): filters sponsorship segments
 
 ## References
 

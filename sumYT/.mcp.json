@@ -1,10 +1,9 @@
 {
   "youtube-transcript": {
-    "command": "uvx",
+    "command": "npx",
     "args": [
-      "--from",
-      "git+https://github.com/jkawamoto/mcp-youtube-transcript",
-      "mcp-youtube-transcript"
+      "-y",
+      "@kimtaeyoon83/mcp-server-youtube-transcript"
     ]
   }
 }

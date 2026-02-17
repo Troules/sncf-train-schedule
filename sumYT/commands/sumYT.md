@@ -1,7 +1,7 @@
 ---
 description: Summarize a YouTube video with chapters, timestamps, and markdown output
 argument-hint: "<youtube-url>"
-allowed-tools: ["mcp__plugin_sumYT_youtube-transcript__get_video_info", "mcp__plugin_sumYT_youtube-transcript__get_timed_transcript", "Write", "WebSearch", "WebFetch"]
+allowed-tools: ["mcp__plugin_sumYT_youtube-transcript__get_transcript", "Write", "WebSearch", "WebFetch"]
 ---
 
 # /sumYT — YouTube Video Summarizer
@@ -24,5 +24,5 @@ Use the `summarize-video` skill to fulfill this request:
 
 ## Requirements
 
-`uv` must be installed for the MCP server to run.
-Install: https://docs.astral.sh/uv
+Node.js and `npx` must be available (standard with any Node.js installation).
+The MCP package installs automatically on first use via `npx -y`.

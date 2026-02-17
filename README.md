@@ -127,13 +127,8 @@ A Claude Code plugin that summarizes YouTube videos into structured markdown doc
 
 ### Prerequisites
 
-**`uv`**: Required to run the YouTube transcript MCP server.
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Or see https://docs.astral.sh/uv for platform-specific instructions.
+**Node.js**: Required to run the YouTube transcript MCP server via `npx`.
+The MCP package (`@kimtaeyoon83/mcp-server-youtube-transcript`) installs automatically on first use.
 
 No API key needed — transcripts are fetched directly from YouTube.
 
